@@ -8,7 +8,20 @@ TODO: Write installation instructions here
 
 ## Usage
 
-TODO: Write usage instructions here
+### Access Tokens
+Obtain your [personal beeminder access
+token](https://www.beeminder.com/api/v1/auth_token.json) and create a file named
+`secrets.toml` in one of the following directories, checked in order:
+* working directory from which this program is run
+* `$HOME/.beeminder-gcal`
+* `${XDG_DATA_HOME:$HOME/.local/share}/beeminder-gcal`
+
+It should look like
+```toml
+[beeminder]
+user = "your_username"
+auth_token = "your_auth_token"
+```
 
 ## Development
 
