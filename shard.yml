@@ -1,0 +1,19 @@
+name: beeminder-gcal-integration
+version: 0.1.0
+
+authors:
+  - Robert Perce <contact@rperce.net>
+
+# description: |
+#   Short description of beeminder-gcal-integration
+
+# dependencies:
+#   pg:
+#     github: will/crystal-pg
+#     version: "~> 0.5"
+
+# development_dependencies:
+#   webmock:
+#     github: manastech/webmock.cr
+
+license: MIT
