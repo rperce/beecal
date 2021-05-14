@@ -1,5 +1,8 @@
 require "./secrets"
 require "./beeminder"
+require "./google"
 APP = "beeminder-gcal"
 
-p goals **auth(APP)["beeminder"]
+authn = auth(APP)
+p goals **authn["beeminder"]
+# p calendar **authn["google"]

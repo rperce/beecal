@@ -4,6 +4,22 @@ shards:
     git: https://github.com/crystal-ameba/ameba.git
     version: 0.13.4
 
+  exception_page:
+    git: https://github.com/crystal-loot/exception_page.git
+    version: 0.1.5
+
+  kemal:
+    git: https://github.com/kemalcr/kemal.git
+    version: 1.0.0
+
+  kilt:
+    git: https://github.com/jeromegn/kilt.git
+    version: 0.4.1
+
+  radix:
+    git: https://github.com/luislavena/radix.git
+    version: 0.4.1
+
   toml:
     git: https://github.com/crystal-community/toml.cr.git
     version: 0.7.0+git.commit.7852db986976679bd39a8b3b3172cae5a8c6a2b3

@@ -13,6 +13,8 @@ dependencies:
     branch: master
   xdg:
     github: dscottboggs/xdg.cr
+  kemal:
+    github: kemalcr/kemal
 
 development_dependencies:
   ameba:
