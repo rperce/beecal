@@ -3,6 +3,8 @@ require "./beeminder"
 require "./google"
 APP = "beeminder-gcal"
 
-authn = auth(APP)
-p goals **authn["beeminder"]
-# p calendar **authn["google"]
+authn = Auth.new(APP)
+p goals **authn.beeminder
+
+cal = Google::Calendar.new authn
+p cal.events
