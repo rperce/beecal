@@ -10,7 +10,8 @@ goals = bee.active_goals
 
 cal = Google::Calendar.new authn
 cal.beeminder_events.each do |event|
-  slug = event["summary"].as_s.split(" ")[-1]
+  summary = event["summary"].as_s
+  slug = summary.split(" ")[-1]
   goal = goals.find { |g| g.slug == slug }
   time = Time::Format::ISO_8601_DATE_TIME.parse(event["start"]["dateTime"].as_s)
   if goal.nil?
@@ -18,6 +19,9 @@ cal.beeminder_events.each do |event|
     cal.delete_event event["id"].as_s
   elsif goal.losedate != time
     Log.info { "Deleting event for goal #{slug} with stale time" }
+    cal.delete_event event["id"].as_s
+  elsif goal.missing != summary.split(" ")[0]
+    Log.info { "Deleting event for goal #{slug} with stale needed amount" }
     cal.delete_event event["id"].as_s
   else
     Log.info { "Event for goal #{slug} is correct" }

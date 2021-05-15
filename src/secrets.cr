@@ -115,6 +115,9 @@ class Auth
 
     code = nil
     get "/beeminder-gcal/auth" do |env|
+      env.redirect authorize_uri
+    end
+    get "/beeminder-gcal/postauth" do |env|
       code = env.params.query["code"]
       "<html><body>You can close this window.<script>window.close();</script></body></html>"
     end
@@ -122,7 +125,7 @@ class Auth
       Kemal.stop
     end
 
-    Process.run("xdg-open", [authorize_uri])
+    Log.info { "Visit /beeminder-gcal/auth to authenticate with google" }
     Kemal.run
 
     if code.nil?

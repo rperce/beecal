@@ -1,7 +1,8 @@
 require "http/client"
 require "./secrets"
 
-TAG="Managed by beeminder-gcal-integration"
+TAG = "Managed by beeminder-gcal-integration"
+
 module Google
   class Calendar
     class Event
@@ -43,7 +44,7 @@ module Google
       items = [] of JSON::Any
       next_page_token = nil
       loop do
-        uri.query = URI::Params.encode({ q: TAG, pageToken: next_page_token })
+        uri.query = URI::Params.encode({q: TAG, pageToken: next_page_token})
         self.session.authenticate(@client)
         resp = JSON.parse(@client.get(uri.to_s).body)
         items.concat(resp["items"].as_a)
