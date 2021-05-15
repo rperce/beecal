@@ -22,7 +22,7 @@ jobs:
       - name: Run tests
         run: crystal spec --order=random
       - name: Build
-        run: crystal build --progress --release src/main.cr -o beecal
+        run: crystal build --static --progress --release src/main.cr -o beecal
       - name: Release
         uses: ncipollo/release-action@v1
         with:
