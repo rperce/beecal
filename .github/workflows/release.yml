@@ -1,26 +1,15 @@
 on:
   push:
-    branches: [main]
     tags: ['*']
 jobs:
   release:
-    strategy:
-      fail-fast: false
-      matrix:
-        crystal: [0.36.1]
     runs-on: ubuntu-latest
+    container:
+        image: crystallang/crystal:0.36.1-alpine
     steps:
       - uses: actions/checkout@v2
-      - name: Install Crystal
-        uses: oprypin/install-crystal@v1
-        with:
-          crystal: ${{ matrix.crystal }}
-      - name: Check formatting
-        run: crystal tool format; git diff --exit-code
       - name: Install shards
         run: shards install --ignore-crystal-version
-      - name: Run tests
-        run: crystal spec --order=random
       - name: Build
         run: crystal build --static --progress --release src/main.cr -o beecal
       - name: Release
