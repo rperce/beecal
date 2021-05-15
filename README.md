@@ -1,5 +1,8 @@
 # beecal
 
+![crystal-version](https://img.shields.io/badge/crystal--version-0.36.1-informational)
+[![build](https://github.com/rperce/beecal/actions/workflows/crystal.yml/badge.svg?branch=main)](https://github.com/rperce/beecal/actions/workflows/crystal.yml)
+
 Tool to sync beeminder due-by deadlines to a google calendar.
 
 ## Installation
