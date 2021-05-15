@@ -31,7 +31,7 @@ alias Secrets = NamedTuple(
     client_secret: String,
     token: OAuth2::AccessToken?))
 
-def read_secrets(file): Secrets
+def read_secrets(file) : Secrets
   secrets = TOML.parse(File.read(file))
   beeminder = secrets["beeminder"].as(Hash)
   google = secrets["google"].as(Hash)
@@ -53,11 +53,18 @@ end
 class Auth
   getter secrets_file
   getter google_oauth2_session
-  def beeminder() @secrets["beeminder"] end
-  def google() @secrets["google"] end
+
+  def beeminder
+    @secrets["beeminder"]
+  end
+
+  def google
+    @secrets["google"]
+  end
 
   @secrets_file : Path
   @secrets : Secrets
+
   def initialize(@app : String)
     @secrets_file = find_secrets_file(@app)
     @secrets = read_secrets(@secrets_file)
@@ -77,7 +84,6 @@ class Auth
       write_token(sesh.access_token)
     end
   end
-
 
   def to_toml_string(secrets = @secrets)
     toml = <<-TOML
@@ -99,7 +105,7 @@ class Auth
     toml
   end
 
-  def ensure_google_token()
+  def ensure_google_token
     unless google["token"].nil?
       return
     end

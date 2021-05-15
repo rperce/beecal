@@ -32,24 +32,27 @@ select "User data" in the radio buttons. Click "Next".
 Fill in "beeminder-gcal-integration" for "App name" and select your own email under "User
 support email" and fill it in under "Developer contact information". Click "Save and
 continue" in the "Scopes" section. In the "OAuth Client ID" section, select "Desktop app"
-in the "Application type" dropdown and leave "Name" as "Desktop client 1". 
+in the "Application type" dropdown and leave "Name" as "Desktop client 1".
 
 Go to the Credentials section in the sidebar, and click the Name of the client ID you just
-created. Copy the Client ID and Client secret to your secrets.toml; it should look like
-this:
+created. Copy the Client ID and Client secret to your secrets.toml; it should now look
+like this:
 ```toml
 [beeminder]
 user = "your_username"
 auth_token = "your_auth_token"
 
 [google]
+calendar_id = "your_calendar_id"
 client_id = "your_client_id"
 client_secret = "your_client_secret"
 ```
 
-## Development
+You can use your primary calendar id (`your_email@gmail.com`, probably) or create a new
+calendar for beeminder-gcal-integration; it will only edit events that claim to be
+"Managed by beeminder-gcal-integration".
 
-TODO: Write development instructions here
+## Development
 
 ## Contributing
 
@@ -61,4 +64,4 @@ TODO: Write development instructions here
 
 ## Contributors
 
-- [Robert Perce](https://github.com/your-github-user) - creator and maintainer
+- [Robert Perce](https://gitlab.com/rperce) - creator and maintainer
