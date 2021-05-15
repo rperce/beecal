@@ -1,12 +1,14 @@
-# beeminder-gcal-integration
+# beecal
 
-TODO: Write a description here
+Tool to sync beeminder due-by deadlines to a google calendar.
 
 ## Installation
 
 TODO: Write installation instructions here
 
 ## Usage
+
+Download the binary from 
 
 ### Access Tokens
 Obtain your [personal beeminder access

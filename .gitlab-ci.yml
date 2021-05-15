@@ -1,0 +1,21 @@
+image: crystallang/crystal:0.36.1
+
+stages:
+  - spec
+  - build
+  - release
+
+spec:
+  stage: spec
+  script:
+    - crystal spec
+
+build:
+  stage: build
+  script:
+    - crystal build --progress --release src/main.cr -o beecal
+
+release:
+  stage: release
+  script:
+    - crystal build --progress --release src/main.cr -o beecal
