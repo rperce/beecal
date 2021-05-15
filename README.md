@@ -4,11 +4,23 @@ Tool to sync beeminder due-by deadlines to a google calendar.
 
 ## Installation
 
-TODO: Write installation instructions here
+Download the `beecal` binary from the [latest
+release](https://github.com/rperce/beecal/releases/latest).
+
+Alternatively, build from source, assuming you use [crenv](https://github.com/crenv/crenv)
+to manage your crystal version:
+```shell
+shards install
+crystal build --release --progress src/main.cr -o beecal
+```
 
 ## Usage
 
-Download the binary from 
+Set up your access tokens using the instructions below. Then, run the binary manually; it
+will spin up an HTTP server. Point your browser at
+`wherever.this.runs/beeminder-gcal/auth` and allow access with Google. Future runs should
+refresh your access token manually and can be set up unsupervized, so at this point you
+can create a cronjob that runs the script every ten minutes or so.
 
 ### Access Tokens
 Obtain your [personal beeminder access
@@ -35,6 +47,9 @@ Fill in "beeminder-gcal-integration" for "App name" and select your own email un
 support email" and fill it in under "Developer contact information". Click "Save and
 continue" in the "Scopes" section. In the "OAuth Client ID" section, select "Desktop app"
 in the "Application type" dropdown and leave "Name" as "Desktop client 1".
+
+Now, in the sidebar, open "OAuth consent screen" and click "Add users" and "Test users".
+Add yourself.
 
 Go to the Credentials section in the sidebar, and click the Name of the client ID you just
 created. Copy the Client ID and Client secret to your secrets.toml; it should now look
