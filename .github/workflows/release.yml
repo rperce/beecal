@@ -49,5 +49,5 @@ jobs:
       - name: Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "bin/beecal.linux,bin/beecal.macos"
+          artifacts: "bin/beecal.linux/beecal.linux,bin/beecal.macos/beecal.macos"
           token: ${{ secrets.GITHUB_TOKEN }}
