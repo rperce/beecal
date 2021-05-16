@@ -33,7 +33,7 @@ jobs:
           path: bin/beecal.linux
           retention-days: 1
   release:
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v2
         with:
