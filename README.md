@@ -13,8 +13,7 @@ release](https://github.com/rperce/beecal/releases/latest).
 Alternatively, build from source, assuming you use [crenv](https://github.com/crenv/crenv)
 to manage your crystal version:
 ```shell
-shards install
-crystal build --release --progress src/main.cr -o beecal
+shards build --production --release --no-debug --progress
 ```
 
 ## Usage

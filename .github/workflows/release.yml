@@ -43,7 +43,7 @@ jobs:
         with:
           name: beecal.linux
           path: bin/beecal.linux
-      - name: Debug: inspect
+      - name: Debug inspect
         run: ls -R
       - name: Release
         uses: ncipollo/release-action@v1
