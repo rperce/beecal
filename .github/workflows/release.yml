@@ -50,4 +50,3 @@ jobs:
         with:
           artifacts: "bin"
           token: ${{ secrets.GITHUB_TOKEN }}
-  release:
