@@ -25,6 +25,38 @@ will spin up an HTTP server. Point your browser at
 refresh your access token manually and can be set up unsupervized, so at this point you
 can create a cronjob that runs the script every ten minutes or so.
 
+For example, if you're already using systemd-timers, create:
+
+`/etc/systemd/system/beecal.service`
+```toml
+[Unit]
+Description=beecal
+
+[Service]
+Environment="HOME=/home/robert"
+ExecStart=/usr/local/bin/beecal
+```
+
+and
+
+`/etc/systemd/system/beecal.timer`
+```toml
+[Unit]
+Description=Run beecal every fifteen minutes
+
+[Timer]
+OnUnitActiveSec=15min
+
+[Install]
+WantedBy=timers.target
+```
+
+and run
+```shell
+sudo systemctl enable beecal.timer
+sudo systemctl start beecal.timer
+```
+
 ### Access Tokens
 Obtain your [personal beeminder access
 token](https://www.beeminder.com/api/v1/auth_token.json) and create a file named
