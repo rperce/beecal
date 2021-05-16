@@ -4,8 +4,9 @@ version: 0.1.2
 authors:
   - Robert Perce <contact@rperce.net>
 
-# description: |
-#   Short description of beeminder-gcal-integration
+targets:
+  beecal:
+    main: src/main.cr
 
 dependencies:
   toml:
@@ -20,8 +21,5 @@ development_dependencies:
   ameba:
     github: crystal-ameba/ameba
     version: ~> 0.13.0
-# development_dependencies:
-#   webmock:
-#     github: manastech/webmock.cr
 
 license: MIT

@@ -2,18 +2,52 @@ on:
   push:
     tags: ['*']
 jobs:
-  release:
-    runs-on: ubuntu-latest
-    container:
-        image: crystallang/crystal:0.36.1-alpine
+  macos:
+    runs-on: macOS-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install shards
-        run: shards install --ignore-crystal-version
+      - name: Install Crystal
+        uses: oprypin/install-crystal@v1
+        with:
+          crystal: [0.36.1]
       - name: Build
-        run: crystal build --static --progress --release src/main.cr -o beecal
+        run: shards build --production --release --no-debug --progress
+      - run: mv bin/beecal bin/beecal.macos
+      - uses: actions/upload-artifact@v2
+        with:
+          name: beecal.macos
+          path: bin/beecal.macos
+          retention-days: 1
+  linux:
+    runs-on: ubuntu-latest
+    container:
+      image: crystallang/crystal:0.36.1-alpine
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        run: shards build --production --release --static --no-debug --progress
+      - run: mv bin/beecal bin/beecal.linux
+      - uses: actions/upload-artifact@master
+        with:
+          name: beecal.linux
+          path: bin/beecal.linux
+          retention-days: 1
+  release:
+    run-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: beecal.macos
+          path: bin/beecal.macos
+      - uses: actions/download-artifact@v2
+        with:
+          name: beecal.linux
+          path: bin/beecal.linux
+      - name: Debug: inspect
+        run: ls -R
       - name: Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "beecal"
+          artifacts: "bin"
           token: ${{ secrets.GITHUB_TOKEN }}
+  release:
